@@ -4,7 +4,7 @@
 mvnw.cmd spring-boot:run  # for windows
 ```
 
-[swagger](http://localhost:8080/swager-ui.html)
+[swagger](http://localhost:8080/swagger-ui.html)
 
 ### Тестовое задание "Гаишник"
 
