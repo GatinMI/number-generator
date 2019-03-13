@@ -1,7 +1,6 @@
 ### Execution
 ```shell
-./mvnw spring-boot:run   # for mac/linux
-mvnw.cmd spring-boot:run  # for windows
+mvn spring-boot:run
 ```
 
 [swagger](http://localhost:8080/swagger-ui.html)
