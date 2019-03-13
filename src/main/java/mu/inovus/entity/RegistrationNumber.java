@@ -1,6 +1,6 @@
 package mu.inovus.entity;
 
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by maratgatin on 13/03/2019.
@@ -16,7 +16,7 @@ public final class RegistrationNumber {
     private static final String SUFFIX = " 116 RUS";
 
     public static final int MAX_NUMBER_BOUND = 1000;
-    public static final int MAX_LETTERS_BOUND = (int) (Math.pow(Letters.values().length, LETTERS_COUNT) + 1);
+    public static final int MAX_LETTERS_BOUND = (int) (Math.pow(Letter.values().length, LETTERS_COUNT) + 1);
 
 
 
@@ -49,8 +49,21 @@ public final class RegistrationNumber {
         return new RegistrationNumber(nums, letters);
     }
 
-    private enum Letters {
+    private enum Letter {
         А, Е, Т, О, Р, Н, У, К, Х, С, В, М;
+
+        private static final List<Letter> letterMapping;
+
+        static {
+            Comparator<Letter> comp = Comparator.comparing(Letter::toString);
+            List<Letter> letters = Arrays.asList(Letter.values());
+            letters.sort(comp);
+            letterMapping = letters;
+        }
+
+        public static Letter getLetterByIndex(int index) {
+            return letterMapping.get(index);
+        }
     }
 
     private static final class RandomNumberGeneratorHolder {
@@ -64,8 +77,8 @@ public final class RegistrationNumber {
 
         int var1 = lettersPart;
         for (int i = 0; i < LETTERS_COUNT; i++) {
-            stringBuilder.append(Letters.values()[var1 % Letters.values().length]);
-            var1 /= Letters.values().length;
+            stringBuilder.append(Letter.getLetterByIndex(var1 % Letter.values().length));
+            var1 /= Letter.values().length;
         }
         stringBuilder.reverse();
         stringBuilder.insert(NUMBERS_POS, String.format("%03d", numberPart));
