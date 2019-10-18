@@ -20,7 +20,7 @@ public final class RegistrationNumber {
 
 
 
-    public RegistrationNumber(int numberPart, int lettersPart) {
+    private RegistrationNumber(int numberPart, int lettersPart) {
         if (numberPart >= MAX_NUMBER_BOUND || lettersPart >= MAX_LETTERS_BOUND) {
             throw new IllegalArgumentException("Check bounds");
         }
